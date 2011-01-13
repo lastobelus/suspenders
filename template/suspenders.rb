@@ -97,6 +97,7 @@ template "mysql_database.yml.erb", "config/database.yml", :force => true
 rake "db:create"
 
 say "Setting up plugins"
+plugin "https://github.com/adamlogic/showoff.git"
 
 generators_config = <<-RUBY
     config.generators do |generate|
@@ -121,6 +122,7 @@ create_file "public/stylesheets/screen.css"
 copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
 
 replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
+replace_in_file "spec/spec_helper.rb", "require 'rspec/rails'", "require 'rspec/rails'\nrequire 'remarkable/active_record'"
 
 inject_into_file "features/support/env.rb",
                  %{Capybara.save_and_open_page_path = 'tmp'\n} +
