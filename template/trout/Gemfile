@@ -15,6 +15,10 @@ gem "mysql"
 gem "flutie"
 gem "dynamic_form"
 gem "ancestry"
+gem "decent_exposure"
+gem 'foreigner'
+gem 'slim', :require => 'slim/rails'
+gem 'aasm'
 
 # RSpec needs to be in :development group to expose generators
 # and rake tasks without having to type RAILS_ENV=test.

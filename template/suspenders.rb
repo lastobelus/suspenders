@@ -97,7 +97,11 @@ template "mysql_database.yml.erb", "config/database.yml", :force => true
 rake "db:create"
 
 say "Setting up plugins"
-plugin "https://github.com/adamlogic/showoff.git"
+plugin "git://github.com/adamlogic/showoff.git"
+plugin "git://github.com/xing/alter_table.git"
+plugin "git://github.com/eladmeidar/rails_indexes.git"
+plugin "git://git.bingocardcreator.com/abingo.git"
+
 
 generators_config = <<-RUBY
     config.generators do |generate|
