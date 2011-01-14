@@ -50,6 +50,16 @@ rush to build something amazing; don't use it if you like missing deadlines.
     template/files/suspenders_gitignore
     template/files/suspenders_layout.html.erb.erb
     template/files/time_formats.rb
+    template/files/_appconfig.rb
+    template/files/_application.rb
+    template/files/_boilerplate.rb
+    template/files/_demo.rb
+    template/files/_flashes.html.erb
+    template/files/_grid.rb
+    template/files/_helpers.rb
+    template/files/_javascript.html.erb
+    template/files/_layouts.rb
+    template/files/_stylesheets.rb
     template/suspenders.rb
     template/trout/Gemfile
     template/trout/public/javascripts/jquery-ui.js
