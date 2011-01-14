@@ -4,6 +4,11 @@ gem "rails", ">= 3.0.3"
 gem "rack"
 gem "clearance", "0.9.1"
 gem "haml"
+
+# HTML/CSS framework and boilerplate #
+gem 'compass'
+gem 'html5-boilerplate'
+
 gem "high_voltage"
 gem "hoptoad_notifier"
 gem "RedCloth", :require => "redcloth"
@@ -21,7 +26,8 @@ gem 'slim', :require => 'slim/rails'
 gem 'aasm'
 
 # RSpec needs to be in :development group to expose generators
-# and rake tasks without having to type RAILS_ENV=test.
+# and rake tasks without having to type RAILS_ENV=test. #
+
 group :development, :test do
   gem "rspec-rails", "~> 2.4.0"
   gem "remarkable_activerecord"

@@ -50,6 +50,11 @@ def trout(destination_path)
   run "trout checkout --source-root=template/trout #{destination_path} #{origin}"
 end
 
+say "initializing git repo..."
+git :init
+git :add    => '.'
+git :commit => '-a -m "fresh rails app"'
+
 say "Getting rid of files we don't use"
 
 remove_file "README"
@@ -94,13 +99,27 @@ run "bundle install"
 say "Let's use MySQL"
 
 template "mysql_database.yml.erb", "config/database.yml", :force => true
-rake "db:create"
+rake "db:create:all"
+# for some reason the above line is not working, but if I pause and go to the project and run it by hand it does.
+ask "is the database there?"
+
+# stuff from https://github.com/greendog99/greendog-rails-template
+say "use compass/html-5-boilerplate"
+apply "#{@partials}/_boilerplate.rb"
+say "use 960 grid"
+apply "#{@partials}/_grid.rb"          # Must be after boilerplate since it modifies SASS files
+apply "#{@partials}/_stylesheets.rb"
+apply "#{@partials}/_layouts.rb"
+apply "#{@partials}/_helpers.rb"
+apply "#{@partials}/_application.rb"
+apply "#{@partials}/_app_config.rb"
+apply "#{@partials}/_demo.rb"
 
 say "Setting up plugins"
-plugin "git://github.com/adamlogic/showoff.git"
-plugin "git://github.com/xing/alter_table.git"
-plugin "git://github.com/eladmeidar/rails_indexes.git"
-plugin "git://git.bingocardcreator.com/abingo.git"
+plugin 'showoff', :git => "git://github.com/adamlogic/showoff.git"
+plugin 'alter_table', :git => "git://github.com/xing/alter_table.git"
+plugin 'rails_indexes', :git => "git://github.com/eladmeidar/rails_indexes.git"
+plugin 'abingo', :git => "git://git.bingocardcreator.com/abingo.git"
 
 
 generators_config = <<-RUBY
@@ -108,6 +127,7 @@ generators_config = <<-RUBY
       generate.test_framework :rspec
     end
 RUBY
+
 inject_into_class "config/application.rb", "Application", generators_config
 
 action_mailer_host "development", "#{app_name}.local"
@@ -157,6 +177,8 @@ copy_file "body_class_helper.rb", "app/helpers/body_class_helper.rb"
 say "Setting up a root route"
 
 route "root :to => 'Clearance::Sessions#new'"
+
+git :commit => '-a -m "applied application template"'
 
 say "Congratulations! You just pulled our suspenders."
 say "Remember to run 'rails generate hoptoad' with your API key."
