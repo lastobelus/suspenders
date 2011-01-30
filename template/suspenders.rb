@@ -105,15 +105,15 @@ ask "is the database there?"
 
 # stuff from https://github.com/greendog99/greendog-rails-template
 say "use compass/html-5-boilerplate"
-apply "#{@partials}/_boilerplate.rb"
+apply "_boilerplate.rb"
 say "use 960 grid"
-apply "#{@partials}/_grid.rb"          # Must be after boilerplate since it modifies SASS files
-apply "#{@partials}/_stylesheets.rb"
-apply "#{@partials}/_layouts.rb"
-apply "#{@partials}/_helpers.rb"
-apply "#{@partials}/_application.rb"
-apply "#{@partials}/_app_config.rb"
-apply "#{@partials}/_demo.rb"
+apply "_grid.rb"          # Must be after boilerplate since it modifies SASS files
+apply "_stylesheets.rb"
+apply "_layouts.rb"
+apply "_helpers.rb"
+apply "_application.rb"
+apply "_appconfig.rb"
+apply "_demo.rb"
 
 say "Setting up plugins"
 plugin 'showoff', :git => "git://github.com/adamlogic/showoff.git"
@@ -178,6 +178,9 @@ say "Setting up a root route"
 
 route "root :to => 'Clearance::Sessions#new'"
 
+rake "db:migrate"
+
+git :add => '--all'
 git :commit => '-a -m "applied application template"'
 
 say "Congratulations! You just pulled our suspenders."

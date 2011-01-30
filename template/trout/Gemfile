@@ -4,6 +4,7 @@ gem "rails", ">= 3.0.3"
 gem "rack"
 gem "clearance", "0.9.1"
 gem "haml"
+gem 'mongrel'
 
 # HTML/CSS framework and boilerplate #
 gem 'compass'

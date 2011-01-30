@@ -1,6 +1,6 @@
 # Set up custom 960px CSS grid
 
-puts "Creating CSS grid framework ...".magenta
+say "Creating CSS grid framework ..."
 
 inject_into_file 'app/stylesheets/style.sass', :after => "@import partials/example\n\n" do
   <<-SASS.gsub(/^ {4}/, '')
