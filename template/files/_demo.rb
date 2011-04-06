@@ -1,6 +1,6 @@
 # Add some demo html pages. These can be deleted at any time.
 
-puts "Creating demo pages ...".magenta
+say "Creating demo pages ..."
 
 inject_into_file 'config/routes.rb', :after => ".routes.draw do\n" do
   <<-RUBY.gsub(/^ {2}/, '')

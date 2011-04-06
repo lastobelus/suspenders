@@ -1,6 +1,6 @@
 # Set up custom stylesheet defaults
 
-puts "Creating default stylesheets ...".magenta
+say "Creating default stylesheets ..."
 
 remove_file 'app/stylesheets/partials/_example.sass'
 gsub_file 'app/stylesheets/style.sass', %r{//@include html5-boilerplate;}, '@include html5-boilerplate'
