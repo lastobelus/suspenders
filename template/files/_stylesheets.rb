@@ -4,7 +4,7 @@ say "Creating default stylesheets ..."
 
 remove_file 'app/stylesheets/partials/_example.sass'
 gsub_file 'app/stylesheets/style.sass', %r{//@include html5-boilerplate;}, '@include html5-boilerplate'
-gsub_file 'app/stylesheets/style.sass', %r{@import partials/example}, '//@import partials/example'
+gsub_file 'app/stylesheets/style.sass', %r{@import partials/overrides}, "//@import partials/overrides\n\n@import partials/grid"
 
 remove_file 'app/stylesheets/partials/_page.sass'
 file 'app/stylesheets/partials/_page.sass', <<-SASS.gsub(/^ {2}/, '')
