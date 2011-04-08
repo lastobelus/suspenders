@@ -82,6 +82,9 @@ file 'app/stylesheets/partials/_page.sass', <<-SASS.gsub(/^ {2}/, '')
     .search
       +col(3)
       text-align: right
+    .login-out
+      +column(3)
+      text-align: right
 
   div#main
     background-color: white

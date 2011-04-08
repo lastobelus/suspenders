@@ -22,9 +22,13 @@ file 'app/views/layouts/_nav.html.haml', <<-HAML.gsub(/^ {2}/, '')
     %p
       This is your navigation bar. Enjoy.
 
-  .search
-    %p
-      Search box goes here.
+  .login-out
+    - if signed_in?
+      %p
+        = link_to "Sign out", sign_out_path, :method => :delete
+    - else
+      %p
+        = link_to "Sign in", sign_in_path
 HAML
 
 # This needs to be kept up to date as the boilerplate and sporkd gem get updated
