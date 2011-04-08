@@ -29,6 +29,7 @@ HAML
 
 # This needs to be kept up to date as the boilerplate and sporkd gem get updated
 remove_file 'app/views/layouts/application.html.haml'
+remove_file 'app/views/layouts/application.html.erb'
 file 'app/views/layouts/application.html.haml', <<-HAML.gsub(/^ {2}/, '')
   !!! 5
   -# http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither

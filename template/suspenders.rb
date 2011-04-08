@@ -127,6 +127,8 @@ plugin 'abingo', :git => "git://git.bingocardcreator.com/abingo.git"
 generators_config = <<-RUBY
     config.generators do |generate|
       generate.test_framework :rspec
+      generate.template_engine :haml
+      generate.fixture_replacement :factory_girl
     end
 RUBY
 
@@ -179,6 +181,10 @@ say "Copying miscellaneous support files"
 copy_file "errors.rb", "config/initializers/errors.rb"
 copy_file "time_formats.rb", "config/initializers/time_formats.rb"
 copy_file "body_class_helper.rb", "app/helpers/body_class_helper.rb"
+
+say "adding haml generators"
+git :clone => "git://github.com/psynix/rails3_haml_scaffold_generator.git lib/generators/haml"
+remove_dir "lib/generators/haml/.git"
 
 say "Setting up a root route"
 
