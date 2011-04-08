@@ -4,10 +4,12 @@
 
 require 'net/http'
 require 'net/https'
-
+require 'date'
 template_root = File.expand_path(File.join(File.dirname(__FILE__)))
 source_paths << File.join(template_root, "files")
 
+db_password = ask("do you have a database password?")
+puts "db_password: #{db_password.inspect}"
 # Helpers
 
 def concat_file(source, destination)
@@ -101,7 +103,7 @@ say "Let's use MySQL"
 template "mysql_database.yml.erb", "config/database.yml", :force => true
 rake "db:create:all"
 # for some reason the above line is not working, but if I pause and go to the project and run it by hand it does.
-ask "is the database there?"
+yes? "is the database there?"
 
 # stuff from https://github.com/greendog99/greendog-rails-template
 say "use compass/html-5-boilerplate"
@@ -144,17 +146,21 @@ create_file "public/stylesheets/sass/screen.scss"
 create_file "public/stylesheets/screen.css"
 
 copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
+copy_file "cucumber.yml", "config/cucumber.yml"
 
-replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
-replace_in_file "spec/spec_helper.rb", "require 'rspec/rails'", "require 'rspec/rails'\nrequire 'remarkable/active_record'"
+# replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
+# replace_in_file "spec/spec_helper.rb", "require 'rspec/rails'", "require 'rspec/rails'\nrequire 'remarkable/active_record'"
+copy_file "spec_helper.rb", "spec/spec_helper.rb"
 
-inject_into_file "features/support/env.rb",
-                 %{Capybara.save_and_open_page_path = 'tmp'\n} +
-                 %{Capybara.javascript_driver = :akephalos\n},
-                 :before => %{Capybara.default_selector = :css}
-replace_in_file "features/support/env.rb",
-                %r{require .*capybara_javascript_emulation.*},
-                ''
+
+# inject_into_file "features/support/env.rb",
+#                  %{Capybara.save_and_open_page_path = 'tmp'\n} +
+#                  %{Capybara.javascript_driver = :akephalos\n},
+#                  :before => %{Capybara.default_selector = :css}
+# replace_in_file "features/support/env.rb",
+#                 %r{require .*capybara_javascript_emulation.*},
+#                 ''
+copy_file "cucumber_env.rb", "features/support/env.rb"
 
 rake "flutie:install"
 

@@ -1,10 +1,11 @@
 source :rubygems
 
-gem "rails", ">= 3.0.3"
+gem "rails", ">= 3.0.6"
 gem "rack"
 gem "clearance", "0.9.1"
 gem "haml"
-gem 'mongrel'
+gem 'file-tail'
+gem "passenger"
 
 # HTML/CSS framework and boilerplate #
 gem 'compass'
@@ -34,7 +35,7 @@ gem 'acts_as_archive'
 # and rake tasks without having to type RAILS_ENV=test. #
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.4.0"
+  gem "rspec-rails", "~> 2.5.0"
   gem "remarkable_activerecord"
   gem "ruby-debug",   :platforms => :mri_18
   gem "ruby-debug19", :platforms => :mri_19
@@ -44,7 +45,7 @@ group :test do
   gem "cucumber-rails"
   gem "factory_girl_rails"
   gem "bourne"
-  gem "capybara"
+  gem "capybara", ">= 0.4"
   gem "database_cleaner"
   gem "fakeweb"
   gem "sham_rack"
@@ -53,6 +54,15 @@ group :test do
   gem "treetop"
   gem "shoulda"
   gem "launchy"
-  gem "akephalos", :git => "git://github.com/thoughtbot/akephalos.git"
+  gem "akephalos", ">= 0.2.5"
   gem "thin"
+  gem "sqlite3"
+  gem "rcov"
+  gem "ZenTest"
+  gem 'spork', '~> 0.9.0.rc'
+  gem 'autotest-growl'
+end
+
+group :osx_test do 
+  gem 'autotest-fsevent', :require => false 
 end

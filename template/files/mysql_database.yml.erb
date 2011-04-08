@@ -2,7 +2,7 @@ development: &default
   adapter: mysql
   database: <%= app_name %>_development
   username: root
-  password:
+  password: <%= db_password %>
   host: localhost
   encoding: utf8
 
